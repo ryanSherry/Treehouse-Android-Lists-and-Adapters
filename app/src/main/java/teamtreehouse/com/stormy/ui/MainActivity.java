@@ -1,6 +1,7 @@
 package teamtreehouse.com.stormy.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import butterknife.BindView;
+import butterknife.OnClick;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.weather.Current;
 import teamtreehouse.com.stormy.weather.Day;
@@ -50,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.iconImageView) ImageView mIconImageView;
     @BindView(R.id.refreshImageView) ImageView mRefreshImageView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
+    @BindView(R.id.dailyButton) Button mDailyButton;
+    @BindView(R.id.hourlyButton) Button mHourlyButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         getForecast(latitude, longitude);
 
         Log.d(TAG, "Main UI code is running!");
+
     }
 
     private void getForecast(double latitude, double longitude) {
@@ -258,6 +264,13 @@ public class MainActivity extends AppCompatActivity {
         AlertDialogFragment dialog = new AlertDialogFragment();
         dialog.show(getFragmentManager(), "error_dialog");
     }
+
+    @OnClick (R.id.dailyButton)
+    public void getDailyActivity(View view){
+        Intent intent = new Intent(this,DailyForecastActivity.class);
+        startActivity(intent);
+    }
+
 }
 
 
